@@ -192,7 +192,7 @@ void LinkList::insert(int data)
 
 bool LinkList::isEmpty() const
 {
-    if(first == NULL && size == 0)
+    if(first == NULL)
         return true;
     else
         return false;

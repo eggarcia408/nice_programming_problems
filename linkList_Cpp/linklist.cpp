@@ -172,7 +172,7 @@ void LinkList::insert(int data)
     newNode->next = NULL;
     newNode->info = data;
 
-    if(first == NULL && size == 0)  // if node you inserting is first node
+    if(first == NULL)  // if node you inserting is first node
     {
         first = newNode;
     }

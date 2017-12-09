@@ -13,12 +13,12 @@ int main()
 	int _n;
 	
 
-	printf("Please enter an integer\n");
-	scanf("%i",&_n);
-    
+    printf("Please enter an integer\n");
+    scanf("%i",&_n);
+
     printf("%li\n",sizeof(int));
-	printf("Integer is: %i\n",_n);
-	printf("Number of 1 bits in %i is %i \n",_n, countingOnes(_n));
+    printf("Integer is: %i\n",_n);
+    printf("Number of 1 bits in %i is %i \n",_n, countingOnes(_n));
 
     return 0;
 }
@@ -26,7 +26,7 @@ int main()
 
 int countingOnes(int x)
 {
-	
+
 	int shifter = 0x01;
 	int i;
 	int numOfOnes = 0;

@@ -10,8 +10,7 @@ int countingOnes(int x);
 
 int main()
 {
-	int _n;
-	
+    int _n;
 
     printf("Please enter an integer\n");
     scanf("%i",&_n);

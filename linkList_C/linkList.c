@@ -182,7 +182,14 @@ void display(NODE *p)
 
 void delete(NODE **p,int data)
 {
-    if(isEmpty(*p) == 1)  //if link list is empty
+
+    //Cases to consider when deleting a node
+    //1. If link list is empty
+    //2. When Node being deleted is first node
+    //3. When node being deleted is not first node and within the link list
+    //   (including the last node)
+
+    if(isEmpty(*p) == 1)//1
     {
         printf("Link List is Empty\n");
     }
@@ -203,38 +210,18 @@ void delete(NODE **p,int data)
             trailer = del;
             del     = del->next;
         }
-        if(*p == del) //node to be deleted is first node
+
+        if(del == NULL)
         {
-            if(del->next == NULL)//if node to be deleted is first node and only node
-            {
-                *p = NULL; //will make list empty by maiing root equal to NULL
-                free(del); 
-            }
-            else//if node to be deleted is first node and not only node
-            {
-                *p = del->next;
-                free(del);
-            }
+            printf("Data not found\n");
+            return;
         }
-        else
-        {
-            if(del == NULL) //data not found
-            {
-                printf("Data not Found!!!\n");
-            }
-            else
-            {
-                if(del->next ==  NULL) //deleting last node
-                {
-                    trailer->next = NULL;
-                    free(del);
-                }
-                else    //deleting node thats not first or last
-                {
-                    trailer->next = del->next;
-                    free(del);
-                }
-            }
-        }
+
+        if(*p == del) //2
+            *p = del->next;
+        else//3
+            trailer->next = del->next;
+
+        free(del);
     }
 }

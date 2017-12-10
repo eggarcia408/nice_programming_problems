@@ -81,6 +81,8 @@ int main(int argc, char **argv)
         cout<<"\n\n";
     }
     while(option == 1);
+
+    /*
     //testing copy constructor
     LinkList otherList(myList);
 
@@ -102,6 +104,7 @@ int main(int argc, char **argv)
     x.display();
     otherList.display();
     //
+    */
     return 0;
 }
 
@@ -203,11 +206,8 @@ void LinkList::delInt(int data)
     /*when deleting a node, you have to worry about below:
         1.If list is empty
         2.If list is not empty and node to be deleted is first node
-            2A. The node is the first and only node
-            2B. The node is the first and not the only node
         3.If node to be deleted is not the first node but somewhere in list
-            3A. If node being deleted is last node
-            3B. If node being deleted is not last node
+          (including last node)
     */
 
     if(isEmpty())   //1.
@@ -216,7 +216,6 @@ void LinkList::delInt(int data)
     {
         NODE *del     = first;
         NODE *trailer = NULL;
-        size--;
 
         while(del != NULL)
         {
@@ -229,37 +228,18 @@ void LinkList::delInt(int data)
             del = del->next;
         }
 
+        if(del == NULL)
+        {
+            cout<<"Data not found"<<endl;
+            return;
+        }
+
         if(first == del) //2
-        {
-            if(del->next == NULL) //2A
-            {
-                first = NULL;
-                delete del;
-            }
-            else//2B
-            {
-                first = del->next;
-                delete del;
-            }
-        }
+            first = first->next;
         else //3
-        {
-            if(del == NULL) //if data is not in link list
-                cout<<"Data Not Found!!!!\n";
-            else
-            {
-                if(del->next == NULL) //3A
-                {
-                    trailer->next = NULL;
-                    delete del;
-                }
-                else //3B
-                {
-                    trailer->next = del->next;
-                    delete del;
-                }
-            }
-        }
+            trailer->next = del->next;
+
+        delete del;
     }
 }
 
@@ -273,9 +253,11 @@ void LinkList::display()
         NODE *traverse = first;
         while(traverse != NULL)
         {
-            cout<<traverse->info<<endl;
+            cout<<traverse->info<<"->";
             traverse = traverse->next;
         }
+
+        cout<<"NULL"<<endl;
     }
 }
 

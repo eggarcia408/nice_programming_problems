@@ -15,7 +15,8 @@ typedef struct NODE
 
 
 void postOrderTraversal(NODE *p);
-
+void preOrderTraversal(NODE *p);
+void inOrderTraversal(NODE *p);
 
 void insert(NODE **root_p, int value_p);
 
@@ -39,8 +40,14 @@ int main (int argc, char**argv)
 	}while(cont != 'n');
 	
 	printf("\n\n------Outputting Binary Tree--------\n");
-	postOrderTraversal(root);	
+    printf("In Post Order Traversal: ");
+	postOrderTraversal(root);
 
+    printf("\nIn Pre Order Traversal: ");
+    preOrderTraversal(root);
+
+    printf("\nIn In Order Traversal: ");
+    inOrderTraversal(root);
 	return 0;
 }
 
@@ -62,7 +69,7 @@ void insert(NODE **root_p, int value_p)
 	}
 	else //this  means that the binary tree is nto empty
 	{
-		if((*root_p)->vaulue > value_p) //im checking if value of root is greater then value being inserted
+		if((*root_p)->value > value_p) //im checking if value of root is greater then value being inserted
 		{
 			insert(&((*root_p)->left),value_p);
 		}
@@ -76,7 +83,7 @@ void insert(NODE **root_p, int value_p)
 
 	/*this will display result in post order traversal
 	  post order traversal is:  1. Traverse Left subtree
-								2. Traverse Right subtree								
+								2. Traverse Right subtree	
 								3. Visit Node(Print node value) 
 	*/
 void postOrderTraversal(NODE *p)
@@ -90,5 +97,25 @@ void postOrderTraversal(NODE *p)
 
 }
 
+void inOrderTraversal(NODE *p)
+{
+    if(p != NULL)
+    {
+        inOrderTraversal(p->left);
+        printf("%i\n",p->value);
+        inOrderTraversal(p->right);
+    }
+}
+
+
+void preOrderTraversal(NODE *p)
+{
+    if(p != NULL)
+    {
+        printf("%i\n",p->value);
+        postOrderTraversal(p->left);
+        postOrderTraversal(p->right);
+    }
+}
 
 

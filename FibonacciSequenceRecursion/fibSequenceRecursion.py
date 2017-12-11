@@ -28,3 +28,6 @@ print("\nThe following are the fib terms")
 for i in range(0,int(n)):
     print(fib(i))
 
+#If you just want to return nth number, than you just
+#call the fib function one time to make it return on integer
+

@@ -7,7 +7,7 @@ void Fibsequence(unsigned long int a[], int size);
 
 int main(int argc, char **argv)
 {
-	unsigned long int x[50]; //I can use this since  
+	unsigned long int x[50];
 
 	Fibsequence(x,50);
 	
@@ -29,5 +29,8 @@ void Fibsequence(unsigned long int a[], int size)
         printf("F%i: ",i);
         printf("%lu\n",a[i]);
 	}
+
+    //if you want to return the nth fib number, you just put
+    //return a[i];
 	
 }
